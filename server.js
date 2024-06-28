@@ -59,7 +59,7 @@ app.post("/registerStudent",async (req, res) => {
       // Save attendee to MongoDB
       await attendee.save();
       console.log("Attendee saved successfully");
-      res.sendFile(path.join(__dirname,'../TheEvent', 'public', 'Success.html')); // Redirect upon successful registration
+      res.status(200).json({ message: "Attendee registered successfully" }); // Redirect upon successful registration
     } catch (err) {
       console.error("Failed to save attendee:", err);
       res.status(500).json({ error: "Failed to register for Student" });
@@ -95,7 +95,7 @@ app.post("/registerWorkingClass", async (req, res) => {
     // Save attendee to MongoDB
     await attendee.save();
     console.log("Attendee saved successfully");
-    res.sendFile(path.join(__dirname,'../TheEvent', 'public', 'Success2.html')); // Redirect upon successful registration
+    res.status(200).json({ message: "Attendee registered successfully" }); // Redirect upon successful registration
   } catch (err) {
     console.error("Failed to save attendee:", err);
     res.status(500).json({ error: "Failed to register for Working class" });
