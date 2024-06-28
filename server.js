@@ -1,12 +1,14 @@
+require('dotenv').config();
 const express = require("express");
-const mongoose = require("mongoose");
 const path = require("path");
 const cors = require("cors");
+const mongoose = require('mongoose');
+const connectDB = require('./db.js');
 
 const app = express();
 
 // Connect to MongoDB
-mongoose.connect("mongodb+srv://olukinnif150216029:olukini@cluster0.kboycx4.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
+connectDB();
 
 // Create a schema and model for the registered users
 const attendeeSchema = new mongoose.Schema({
@@ -60,7 +62,7 @@ app.post("/registerStudent",async (req, res) => {
       res.sendFile(path.join(__dirname,'../TheEvent', 'public', 'Success.html')); // Redirect upon successful registration
     } catch (err) {
       console.error("Failed to save attendee:", err);
-      res.status(500).json({ error: "Failed to register working class" });
+      res.status(500).json({ error: "Failed to register for Student" });
     }
 });
 
@@ -96,7 +98,7 @@ app.post("/registerWorkingClass", async (req, res) => {
     res.sendFile(path.join(__dirname,'../TheEvent', 'public', 'Success2.html')); // Redirect upon successful registration
   } catch (err) {
     console.error("Failed to save attendee:", err);
-    res.status(500).json({ error: "Failed to register working class" });
+    res.status(500).json({ error: "Failed to register for Working class" });
   }
 });
 
