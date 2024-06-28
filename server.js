@@ -28,7 +28,7 @@ app.use(express.static(path.join(__dirname,'../TheEvent', 'public')));
 app.use(cors());
 // Routes
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname,'../TheEvent',"public","index.html"));
+  res.send("GLT Media Hangout");
 });
 
 app.post("/registerStudent",async (req, res) => {
